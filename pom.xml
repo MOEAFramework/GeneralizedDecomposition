@@ -37,12 +37,6 @@
 				<configuration>
 					<source>8</source>
 					<target>8</target>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<mainClass>org.moeaframework.gd.Example</mainClass>
-						</manifest>
-					</archive>
 				</configuration>
 			</plugin>
 		</plugins>
