@@ -36,16 +36,10 @@ NondominatedPopulation result = new Executor()
 To use this algorithm within the MOEA Framework, first compile and package this project using Maven:
 
 ```
-
 mvn package
 ```
 
 Then, copy the `.jar` file, typically `target/gd-1.0.0.jar`, into the `lib/` directory of the MOEA Framework.
-You can then reference this algorithm as demonstrated in the example above.
-
-
-The resulting algorithm, called `GD-MOEA/D`, can be used within the MOEA Framework by including this library in the
-classpath.
 
 ## License
 
