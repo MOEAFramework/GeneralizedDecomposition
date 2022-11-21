@@ -30,13 +30,6 @@ jobs:
         with:
           java-version: 8
           distribution: temurin
-      - name: Setup Git and GitHub CLI
-        run: |
-          gh auth setup-git
-          git config --global user.email "${{ secrets.EMAIL }}"
-          git config --global user.name "${{ secrets.USERNAME }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
       - name: Validate version number
         if: ${{ ! inputs.skip_validation }}
         run: |
@@ -68,7 +61,7 @@ jobs:
         run: |
           gh release create "v${{ inputs.version }}" --draft --title "Version ${{ inputs.version }}" target/gd-1.0.0.jar
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload release artifacts
         uses: actions/upload-artifact@v3
         with:
