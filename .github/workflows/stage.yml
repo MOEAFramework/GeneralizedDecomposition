@@ -11,10 +11,10 @@ on:
         description: 'Create draft GitHub release'
         default: true
         type: boolean
-      #publish_maven:
-      #  description: 'Create Maven bundle'
-      #  default: true
-      #  type: boolean
+      publish_maven:
+        description: 'Create Maven bundle'
+        default: true
+        type: boolean
       skip_validation:
         description: 'Skip version validations'
         default: false
@@ -36,26 +36,26 @@ jobs:
           [ "${{ inputs.version }}" == "$(cat pom.xml | grep '<version>' | tr -d '<>/[:alpha:][:space:]')" ] || (>&2 echo "Version does not match value in pom.xml"; exit -1)
       - name: Build artifact
         run: mvn package
-      #- name: Sign Maven artifacts and create bundle
-      #  if: ${{ inputs.publish_maven }}
-      #  run: |
-      #    echo -n "${GPG_SIGNING_KEY}" | base64 --decode | gpg --import
-      #    
-      #    pushd maven
-      #    gpg -ab ${BUILD_NAME}-${BUILD_VERSION}.pom
-      #    gpg -ab ${BUILD_NAME}-${BUILD_VERSION}.jar
-      #    gpg -ab ${BUILD_NAME}-${BUILD_VERSION}-sources.jar
-      #    gpg -ab ${BUILD_NAME}-${BUILD_VERSION}-javadoc.jar
-      #    
-      #    jar -cvf ${BUILD_NAME}-${BUILD_VERSION}-bundle.jar *
-      #  env:
-      #    GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
-      #- name: Upload Maven bundle
-      #  if: ${{ inputs.publish_maven }}
-      #  uses: actions/upload-artifact@v3
-      #  with:
-      #    name: Maven bundle
-      #    path: maven/*-bundle.jar
+      - name: Sign Maven artifacts and create bundle
+        if: ${{ inputs.publish_maven }}
+        run: |
+          echo -n "${GPG_SIGNING_KEY}" | base64 --decode | gpg --import
+          mkdir maven
+          cp pom.xml maven/gd-${{ inputs.version }}.pom
+          
+          pushd maven
+          gpg -ab gd-${{ inputs.version }}.pom
+          gpg -ab gd-${{ inputs.version }}.jar
+          
+          jar -cvf gd-${{ inputs.version }}-bundle.jar *
+        env:
+          GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+      - name: Upload Maven bundle
+        if: ${{ inputs.publish_maven }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: Maven bundle
+          path: maven/*-bundle.jar
       - name: Stage GitHub release
         if: ${{ inputs.publish_github }}
         run: |
