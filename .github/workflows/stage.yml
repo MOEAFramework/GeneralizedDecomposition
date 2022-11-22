@@ -34,6 +34,7 @@ jobs:
         if: ${{ ! inputs.skip_validation }}
         run: |
           [ "${{ inputs.version }}" == "$(cat pom.xml | grep -m 1 '<version>' | tr -d '<>/[:alpha:][:space:]')" ] || (>&2 echo "Version does not match value in pom.xml"; exit -1)
+          [ "${{ inputs.version }}" == "$(cat README.md | grep -m 1 '<version>' | tr -d '<>/[:alpha:][:space:]')" ] || (>&2 echo "Version does not match value in README.md"; exit -1)
       - name: Build artifact
         run: mvn package
       - name: Sign Maven artifacts and create bundle
@@ -43,10 +44,12 @@ jobs:
           mkdir maven
           cp pom.xml maven/gd-${{ inputs.version }}.pom
           cp target/gd-${{ inputs.version }}.jar maven/gd-${{ inputs.version }}.jar
+          cp target/gd-${{ inputs.version }}-sources.jar maven/gd-${{ inputs.version }}-sources.jar
           
           pushd maven
           gpg -ab gd-${{ inputs.version }}.pom
           gpg -ab gd-${{ inputs.version }}.jar
+          gpg -ab gd-${{ inputs.version }}-sources.jar
           
           jar -cvf gd-${{ inputs.version }}-bundle.jar *
         env:

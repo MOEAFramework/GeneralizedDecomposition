@@ -15,9 +15,22 @@ GD addresses these concerns by determining the correct weights (for the Chebyche
 MOEA/D) needed to produce Pareto solutions near a given set of target points.  This way, if we know approximately the location or
 shape of the Pareto front, we can direct the optimization algorithm towards that region.
 
+## Installation
+
+Add the following dependency to your `pom.xml`:
+
+```xml
+
+<dependency>
+    <groupId>org.moeaframework</groupId>
+    <artifactId>gd</artifactId>
+    <version>1.0</version>
+</dependency>
+```
+
 ## Usage
 
-To use, reference the `GD-MOEA/D` algorithm and supply a `"targets"` property pointing to a file containing the target
+Reference the `GD-MOEA/D` algorithm and supply a `"targets"` property pointing to a file containing the target
 points (objective values only).  If no `"targets"` is provided, it defaults to targeting uniformly-spaced points generated
 by the Normal Boundary Intersection method.
 
@@ -30,16 +43,6 @@ NondominatedPopulation result = new Executor()
 		.withMaxEvaluations(10000)
 		.run();
 ```
-
-## Bundling with the MOEA Framework
-
-To use this algorithm within the MOEA Framework, first compile and package this project using Maven:
-
-```
-mvn package
-```
-
-Then, copy the `.jar` file, typically `target/gd-1.0.0.jar`, into the `lib/` directory of the MOEA Framework.
 
 ## License
 
