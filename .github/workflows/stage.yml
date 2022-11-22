@@ -42,6 +42,7 @@ jobs:
           echo -n "${GPG_SIGNING_KEY}" | base64 --decode | gpg --import
           mkdir maven
           cp pom.xml maven/gd-${{ inputs.version }}.pom
+          cp target/gd-${{ inputs.version }}.jar maven/gd-${{ inputs.version }}.jar
           
           pushd maven
           gpg -ab gd-${{ inputs.version }}.pom
@@ -59,11 +60,11 @@ jobs:
       - name: Stage GitHub release
         if: ${{ inputs.publish_github }}
         run: |
-          gh release create "v${{ inputs.version }}" --draft --title "Version ${{ inputs.version }}" target/gd-1.0.0.jar
+          gh release create "v${{ inputs.version }}" --draft --title "Version ${{ inputs.version }}" target/gd-${{ inputs.version }}.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload release artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Release artifacts
-          path: target/gd-1.0.0.jar
+          path: target/gd-${{ inputs.version }}.jar
