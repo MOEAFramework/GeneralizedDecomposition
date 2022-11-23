@@ -29,7 +29,6 @@ public class Example {
 				.runSeeds(50));
 		
 		analyzer.printAnalysis();
-
 	}
 
 }
