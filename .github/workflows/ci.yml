@@ -18,4 +18,4 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
           distribution: zulu
-      - run: mvn compile exec:java -Dexec.mainClass="org.moeaframework.gd.Example"
+      - run: mvn test
