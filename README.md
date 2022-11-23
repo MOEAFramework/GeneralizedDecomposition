@@ -6,14 +6,14 @@ Generalized Decomposition (GD).
 > Giagkiozis, I., R. C. Purshouse, and P. J. Fleming (2013). "Generalized Decomposition."  Evolutionary Multi-Criterion
 > Optimization, 7th International Conference, pp. 428-442.
 
-Very briefly, MOEA/D typically uses randomly-generated weights that aim to produce a diverse set of solutions.  However, on
-problems with disjoint or oddly shaped Pareto fronts, these weights might not lead to uniformly-spaced solutions.  Additionally,
-modern algorithms like NSGA-III have the option to supply "target points", allowing the algorithm to focus and discover
-solutions near these targets.
+Very briefly, MOEA/D typically uses randomly-generated weights that aim to produce a diverse set of solutions.  While newer
+algorithms like NSGA-III have the option to supply "target points" where the algorithm can focus search, picking weights
+that produce solutions near a given point is challenging.  This is further complicated when the Pareto front shape is
+disjoint / multimodal.  
 
-GD addresses these concerns by determining the correct weights (for the Chebychev / Tchebycheff scalarizing function used by
-MOEA/D) needed to produce Pareto solutions near a given set of target points.  This way, if we know approximately the location or
-shape of the Pareto front, we can direct the optimization algorithm towards that region.
+With GD, we can take a target point (or points) and compute the ideal weights for MOEA/D or any other algorithm using the
+Chebychev / Tchebycheff scalarizing function.  Alternatively, we can use GD to compute a set of weights that should yield
+better and more uniformly-distributed results than randomly-generated weights.
 
 ## Installation
 
