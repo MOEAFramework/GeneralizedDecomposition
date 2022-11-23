@@ -55,14 +55,14 @@ jobs:
           mkdir maven
           cp pom.xml maven/${BUILD_ARTIFACT}.pom
           cp target/${BUILD_ARTIFACT}.jar maven/
-          cp target/${BUILD_ARTIFACT}-jar-all-dependencies.jar maven/
+          cp target/${BUILD_ARTIFACT}-jar-with-dependencies.jar maven/
           cp target/${BUILD_ARTIFACT}-sources.jar maven/
           cp target/${BUILD_ARTIFACT}-javadoc.jar maven/
           
           pushd maven
           gpg -ab ${BUILD_ARTIFACT}.pom
           gpg -ab ${BUILD_ARTIFACT}.jar
-          gpg -ab ${BUILD_ARTIFACT}-jar-all-dependencies.jar
+          gpg -ab ${BUILD_ARTIFACT}-jar-with-dependencies.jar
           gpg -ab ${BUILD_ARTIFACT}-sources.jar
           gpg -ab ${BUILD_ARTIFACT}-javadoc.jar
           
