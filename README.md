@@ -24,15 +24,13 @@ Add the following dependency to your `pom.xml`:
 <dependency>
     <groupId>org.moeaframework</groupId>
     <artifactId>gd</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
 </dependency>
 ```
 
 ## Usage
 
-Reference the `GD-MOEA/D` algorithm and supply a `"targets"` property pointing to a file containing the target
-points (objective values only).  If no `"targets"` is provided, it defaults to targeting uniformly-spaced points generated
-by the Normal Boundary Intersection method.
+Reference the `GD-MOEA/D` algorithm as you would any other:
 
 ```java
 
@@ -43,6 +41,9 @@ NondominatedPopulation result = new Executor()
 		.withMaxEvaluations(10000)
 		.run();
 ```
+
+There is an optional `targets` property.  When set, it will use the target points defined in a file.
+If unset, it will default to uniformly-spaced points generated using the Normal Boundary Intersection method.
 
 ## License
 
