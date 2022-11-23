@@ -79,7 +79,7 @@ jobs:
         if: ${{ inputs.publish_github }}
         run: |
           gh release create "v${{ inputs.version }}" --draft --title "Version ${{ inputs.version }}" \
-              target/${BUILD_ARTIFACT}.jar target/${BUILD_ARTIFACT}-jar-all-dependencies.jar
+              target/${BUILD_ARTIFACT}.jar target/${BUILD_ARTIFACT}-jar-with-dependencies.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload release artifacts
