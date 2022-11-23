@@ -39,7 +39,7 @@ jobs:
           version=$(xmlstarlet sel -N x="http://maven.apache.org/POM/4.0.0" -t -v "//x:project/x:version/text()" pom.xml)
           echo "BUILD_NAME=${shortname}" >> $GITHUB_ENV
           echo "BUILD_VERSION=${version}" >> $GITHUB_ENV
-          echo "BUILD_ARTIFACT=$shortname}-${version}" >> $GITHUB_ENV
+          echo "BUILD_ARTIFACT=${shortname}-${version}" >> $GITHUB_ENV
       - name: Validate version number
         if: ${{ ! inputs.skip_validation }}
         run: |
