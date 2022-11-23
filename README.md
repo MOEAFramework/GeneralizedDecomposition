@@ -7,8 +7,8 @@ Generalized Decomposition (GD).
 > Optimization, 7th International Conference, pp. 428-442.
 
 Very briefly, MOEA/D typically uses randomly-generated weights that aim to produce a diverse set of solutions.  While newer
-algorithms like NSGA-III have the option to supply "target points" where the algorithm can focus search, picking weights
-that produce solutions near a given point is challenging.  This is further complicated when the Pareto front shape is
+algorithms like NSGA-III have the option to supply "target points" where the algorithm can focus search, picking weights for MOEA/D
+that produce solutions near a given target is non-trivial.  This is further complicated when the Pareto front shape is
 disjoint / multimodal.  
 
 With GD, we can take a target point (or points) and compute the ideal weights for MOEA/D or any other algorithm using the
