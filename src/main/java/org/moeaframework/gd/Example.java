@@ -28,7 +28,7 @@ public class Example {
 				.withProperty("targets", "pf/DTLZ2.3D.pf")
 				.runSeeds(50));
 		
-		analyzer.printAnalysis();
+		analyzer.display();
 	}
 
 }
