@@ -56,7 +56,7 @@ public class GDMOEADProvider extends RegisteredAlgorithmProvider {
 			populationSize = problem.getNumberOfObjectives();
 		}
 
-		Initialization initialization = new RandomInitialization(problem, populationSize);
+		Initialization initialization = new RandomInitialization(problem);
 
 		//default to de+pm for real-encodings
 		String operator = properties.getString("operator", null);
@@ -85,6 +85,7 @@ public class GDMOEADProvider extends RegisteredAlgorithmProvider {
 		
 		return new MOEAD(
 				problem,
+				populationSize,
 				neighborhoodSize,
 				weightGenerator,
 				initialization,

@@ -2,7 +2,6 @@ package org.moeaframework.gd;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.moeaframework.Analyzer;
 import org.moeaframework.Executor;
 import org.moeaframework.core.NondominatedPopulation;
 
