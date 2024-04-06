@@ -24,7 +24,7 @@ Add the following dependency to your `pom.xml`:
 <dependency>
     <groupId>org.moeaframework</groupId>
     <artifactId>gd</artifactId>
-    <version>1.2</version>
+    <version>2.0</version>
 </dependency>
 ```
 
@@ -47,7 +47,7 @@ If unset, it will default to uniformly-spaced points generated using the Normal 
 
 ## License
 
-Copyright 2009-2022 David Hadka and other contributors.  All rights reserved.
+Copyright 2009-2024 David Hadka and other contributors.  All rights reserved.
 
 The MOEA Framework is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by

@@ -1,4 +1,4 @@
-/* Copyright 2009-2022 David Hadka
+/* Copyright 2009-2024 David Hadka
  *
  * This file is part of the MOEA Framework.
  *
@@ -30,15 +30,13 @@ import com.joptimizer.optimizers.LPOptimizationRequest;
 import com.joptimizer.optimizers.LPPrimalDualMethod;
 
 /**
- * Generates weights used to find solutions near a given set of target points.
- * Generalized decomposition determines the Chebychev scalarizing function
- * weights that are used to attain solutions near the given target points.
+ * Generates weights used to find solutions near a given set of target points.  Generalized decomposition determines
+ * the Chebychev scalarizing function weights that are used to attain solutions near the given target points.
  * <p>
  * References:
  * <ol>
- *   <li>Giagkiozis, I., R. C. Purshouse, and P. J. Fleming (2013).
- *       "Generalized Decomposition."  Evolutionary Multi-Criterion
- *       Optimization, 7th International Conference, pp. 428-442.
+ *   <li>Giagkiozis, I., R. C. Purshouse, and P. J. Fleming (2013).  "Generalized Decomposition."  Evolutionary
+ *       Multi-Criterion Optimization, 7th International Conference, pp. 428-442.
  * </ol>
  */
 public class GeneralizedDecomposition implements WeightGenerator {
@@ -49,8 +47,7 @@ public class GeneralizedDecomposition implements WeightGenerator {
 	private final List<double[]> targets;
 	
 	/**
-	 * Constructs a weight generator transforming the given weights into those
-	 * defined by generalized decomposition.
+	 * Constructs a weight generator transforming the given weights into those defined by generalized decomposition.
 	 * 
 	 * @param generator the weight generator
 	 */
@@ -59,8 +56,8 @@ public class GeneralizedDecomposition implements WeightGenerator {
 	}
 	
 	/**
-	 * Constructs a weight generator transforming the given target points into
-	 * the required Chebychef scalaring function weights.
+	 * Constructs a weight generator transforming the given target points into the required Chebychef scalarizing
+	 * function weights.
 	 * 
 	 * @param targets the target points normalized on the unit hypervolume
 	 */
@@ -86,8 +83,7 @@ public class GeneralizedDecomposition implements WeightGenerator {
 	}
 
 	private static double[] solve_chebychev(double[] x) {
-		// This function uses JOptimizer to solve the following convex
-		// optimization problem:
+		// This function uses JOptimizer to solve the following convex optimization problem:
 		//
 		//   minimize norm_inf(X*w)
 		//   subject to
@@ -97,8 +93,7 @@ public class GeneralizedDecomposition implements WeightGenerator {
 		//      X is an n x n diagonal matrix
 		//      w is a n x 1 vector
 		//
-		// norm_inf(X*w) is solved by introducing a slack variable, t, and 
-		// adding constraints X*w <= t and X*w >= -t.
+		// norm_inf(X*w) is solved by introducing a slack variable, t, and adding constraints X*w <= t and X*w >= -t.
 		
 		// setup the standard form matrices for LP
 		double[] c = new double[x.length + 1];
@@ -134,8 +129,7 @@ public class GeneralizedDecomposition implements WeightGenerator {
 		}
 		
 		// use JOptimizer to solve the LP
-		ConvexMultivariateRealFunction[] inequalities =
-				new ConvexMultivariateRealFunction[4 * x.length];
+		ConvexMultivariateRealFunction[] inequalities = new ConvexMultivariateRealFunction[4 * x.length];
 		
 		for (int i = 0; i < 4 * x.length; i++) {
 			inequalities[i] = new LinearMultivariateRealFunction(G[i], -h[i]);
