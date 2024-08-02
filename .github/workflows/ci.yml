@@ -13,8 +13,9 @@ jobs:
         java: [ '17', '18', '19', '20', '21' ]
     steps:
       - uses: actions/checkout@v4
-      - name: Set up JDK ${{ matrix.java }}
+      - name: Setup build
         uses: MOEAFramework/.github/actions/setup-build@main
         with:
           java-version: ${{ matrix.java }}
-      - run: mvn test
+      - name: Run tests
+        run: mvn test
