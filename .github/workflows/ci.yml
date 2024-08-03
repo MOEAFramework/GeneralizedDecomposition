@@ -6,4 +6,16 @@ on:
 
 jobs:
   test:
-    uses: MOEAFramework/.github/.github/workflows/maven-ci.yml@main
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        java: [ '17', '18', '19', '20', '21' ]
+    steps:
+      - name: Setup build
+        uses: MOEAFramework/.github/actions/setup-build@main
+        with:
+          java-version: ${{ matrix.java }}
+      - name: Run tests
+        run: mvn test
+        
