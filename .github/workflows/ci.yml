@@ -6,4 +6,4 @@ on:
 
 jobs:
   test:
-    uses: MOEAFramework/.github/workflows/maven-ci.yml@main
+    uses: MOEAFramework/.github/.github/workflows/maven-ci.yml@main
