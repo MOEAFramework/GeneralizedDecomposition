@@ -1,3 +1,8 @@
+> [!IMPORTANT]
+> **This repository is archived.**  Starting with MOEA Framework v5, Generalized Decomposition is provided as an example
+without the need of this plugin.
+
+
 # Generalized Decomposition
 
 Extends the [MOEA Framework](http://github.com/MOEAFramework/MOEAFramework) with a version of MOEA/D using weights produced by
